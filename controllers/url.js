@@ -11,7 +11,14 @@ async function handleGenerateNewShortURL(req, res) {
     redirectUrl: body.url,
     visitHistory: [],
   });
-  return res.json({ id: shortID });
+
+  const allurls = await URL.find({});
+
+  return res.render("home", {
+    id: shortID,
+    urls: allurls,
+  });
+  // return res.json({ id: shortID });
 }
 
 async function handleGetAnalytics(req, res) {
@@ -23,4 +30,15 @@ async function handleGetAnalytics(req, res) {
   });
 }
 
-module.exports = { handleGenerateNewShortURL, handleGetAnalytics };
+async function handleDeleteURL(req, res) {
+   try {
+     const { shortId } = req.params;
+     await URL.deleteOne({ shortId });
+     res.redirect("/"); // after deleting, go back to homepage
+   } catch (err) {
+     console.error(err);
+     res.status(500).send("Error deleting URL");
+   }
+}
+
+module.exports = { handleGenerateNewShortURL, handleGetAnalytics, handleDeleteURL };

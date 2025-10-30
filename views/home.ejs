@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortner</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+            <h1>URL Shortner</h1>
+        <div class="input-box">
+      <form method="post" action="/url">
+        <label for="">Enter the Original Url : </label>
+        <input
+          type="text"
+          name="url"
+          id="url"
+          placeholder="https://example.com" required
+        />
+        <button type="submit">Generate</button>
+      </form>
+      <% if (locals.id) { %>
+  <div class="generated-url-box">
+    <p>
+      Short URL:
+      <a href="url/<%= id %>" target="_blank" id="short-url">
+        http://localhost:8001/url/<%= id %>
+      </a>
+    </p>
+    <button id="copy-btn">Copy</button>
+  </div>
+  <% } %>
+      <div class="url-records">
+        <% if(locals.urls) {%>
+
+          <!-- table  -->
+        <table>
+          <!-- table head -->
+          <thead>
+            <th>S.no</th>
+            <th>ShortID</th>
+            <th>Redirect</th>
+            <th>Clicks</th>
+            <th>Delete</th>
+          </thead>
+          <tbody>
+            <% urls.forEach((url,index) => { %>
+            <tr>
+              <td><%= index+1 %></td>
+              <td><a href="url/<%= url.shortId %>" target="_blank">
+              <%= url.shortId %> 
+              &nbsp; 
+              </td>
+              <td><%= url.redirectUrl %></td>
+              <td><%= url.visitHistory.length %></td>
+              <td>
+        <a href="/url/delete/<%= url.shortId %>" onclick="return confirm('Are you sure you want to delete this URL?')">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% }%>
+      </div>
+    </div>
+  </body>
+    <script src="https://kit.fontawesome.com/7484a44e30.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</html>
