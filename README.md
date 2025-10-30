@@ -32,28 +32,69 @@ It allows users to shorten long URLs, copy them with one click, view all created
 ## 🧩 Folder Structure
 
 ```bash
-📦 url-shortener/
+│
+├── 📁 controllers/
+│ └── url.js # Contains main logic for creating, fetching, and deleting short URLs
 │
 ├── 📁 models/
-│   └── url.js                # Mongoose schema for storing URL info
-│
-├── 📁 routes/
-│   ├── staticRouter.js       # Handles rendering of EJS views
-│   └── url.js                # Handles URL shorten, redirect, delete logic
-│
-├── 📁 views/
-│   ├── home.ejs              # Main front-end template (URL form + table)
-│   └── error.ejs             # Error page (optional)
+│ └── url.js # Mongoose schema defining URL structure in the database
 │
 ├── 📁 public/
-│   └── style.css             # All static CSS files go here
+│ ├── script.js # Client-side JavaScript for copy and delete features
+│ └── style.css # Styling for the frontend (table, buttons, form)
 │
-├── 📄 app.js                 # Entry point for the application
-├── 📄 package.json           # Project dependencies and scripts
-├── 📄 .env                   # Environment variables (MongoDB URI, PORT, etc.)
-├── 📄 .gitignore             # To ignore node_modules, .env, etc.
-└── 📄 README.md              # Project documentation
+├── 📁 routes/
+│ ├── staticRouter.js # Handles EJS view rendering routes
+│ └── url.js # Defines backend routes for URL generation and analytics
+│
+├── 📁 views/
+│ └── home.ejs # Frontend template displaying the form and table of URLs
+│
+├── 📄 connect.js # MongoDB connection file
+├── 📄 index.js # Entry point — initializes Express, routes, and middleware
+├── 📄 package.json # Project dependencies and scripts
+├── 📄 package-lock.json # Auto-generated dependency lock file
+├── 📄 .gitignore # Ignored files (node_modules, .env, etc.)
+├── 📄 .gitattributes # GitHub file handling configuration
+└── 📄 README.md # Project documentation
+```
+## 🧠 How It Works
 
+1. User enters a long URL into the input field.  
+2. The app generates a short unique ID and stores both in MongoDB.  
+3. When the user visits the short URL, the app redirects to the original link and records the visit.  
+4. The table displays analytics including total clicks for each short link.  
+5. Users can copy or delete links directly from the interface.
+
+---
+
+## 🖥️ Setup Instructions
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/url-shortener.git
+cd url-shortener
+```
+
+## 2️⃣ Install dependencies
+```bash
+npm install
+```
+## 3️⃣ Start MongoDB
+Make sure your MongoDB server is running locally or use an online MongoDB Atlas connection.
+
+## 4️⃣ Run the application
+```bash
+npm start
+```
+## 5️⃣ Open in browser
+Visit http://localhost:8001
+
+
+## 💡 Author<br>
+Abhishek Negi<br>
+💻 Passionate about full-stack web development and building real-world applications.<br>
+📧 abhinegii789@gmail.com<br>
 
 
 
