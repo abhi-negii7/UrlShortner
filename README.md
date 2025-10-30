@@ -30,6 +30,8 @@ It allows users to shorten long URLs, copy them with one click, view all created
 
 ---
 ## 🧩 Folder Structure
+
+```bash
 📦 url-shortener/
 │
 ├── 📁 models/
@@ -51,6 +53,7 @@ It allows users to shorten long URLs, copy them with one click, view all created
 ├── 📄 .env                   # Environment variables (MongoDB URI, PORT, etc.)
 ├── 📄 .gitignore             # To ignore node_modules, .env, etc.
 └── 📄 README.md              # Project documentation
+
 
 
 
