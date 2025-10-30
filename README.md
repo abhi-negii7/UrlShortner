@@ -9,8 +9,8 @@ It allows users to shorten long URLs, copy them with one click, view all created
 
 ## 🖼️ Demo Screenshot
 <p float="left">
-  <img src="Screenshots/home" width="75%" />
-  <img src="Screenshots/delete" width="75%" />
+  <img src="Screenshots/home.png" width="75%" />
+  <img src="Screenshots/delete.png" width="75%" />
 </p>
 ---
 
