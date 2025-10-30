@@ -4,12 +4,16 @@ const {
   handleGetAnalytics,
   handleDeleteURL,
 } = require("../controllers/url");
+
 const router = express.Router();
 
+// Route to generate a new short URL when we submit the form
 router.post("/", handleGenerateNewShortURL);
+
+// Route to delete a URL by shortId
 router.get("/analytics/:shortId", handleGetAnalytics);
 
-// ✅ New route to delete a URL by shortId
+// Route to delete a URL by shortId
 router.get("/delete/:shortId", handleDeleteURL);
 
 module.exports = router;

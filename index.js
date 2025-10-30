@@ -17,7 +17,7 @@ app.set("views", path.join(__dirname, "/views"));
 // Middleware - it helps to parse the json data from the request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static("public")); // Serve static files from the "public" directory
 
 // Server-side rendering -> Where render the HTML on the server and send it to the client
 app.use("/url", urlRoute);

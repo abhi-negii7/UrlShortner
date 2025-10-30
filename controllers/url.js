@@ -1,10 +1,10 @@
 const shortid = require("shortid");
 const URL = require("../models/url");
 
+// Controller to handle generating a new short URL
 async function handleGenerateNewShortURL(req, res) {
   const body = req.body;
   if (!body.url) return res.status(400).json({ error: "url is required" });
-  // To create a short ID, we can use nanoid library to generate a unique ID of length 8
   const shortID = shortid();
   await URL.create({
     shortId: shortID,
@@ -18,18 +18,20 @@ async function handleGenerateNewShortURL(req, res) {
     id: shortID,
     urls: allurls,
   });
-  // return res.json({ id: shortID });
 }
 
+// Controller to handle getting analytics for a short URL
 async function handleGetAnalytics(req, res) {
   const shortId = req.params.shortId;
   const result = await URL.findOne({ shortId });
+
   return res.json({
     totalClicks: result.visitHistory.length,
     analytics: result.visitHistory,
   });
 }
 
+// Controller to handle deleting a short URL
 async function handleDeleteURL(req, res) {
    try {
      const { shortId } = req.params;
